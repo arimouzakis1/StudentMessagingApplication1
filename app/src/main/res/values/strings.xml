@@ -17,4 +17,6 @@
     <string name="prompt_name">Name</string>
     <string name="prompt_screen_name">Screen Name</string>
     <string name="create_account">Create Account</string>
+    <string name="invalid_login">Email address or password is incorrect</string>
+    <string name="required_field">Required Field</string>
 </resources>

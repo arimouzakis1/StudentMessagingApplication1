@@ -7,15 +7,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegisterAccount extends AppCompatActivity {
 
 
-    private Button mRegisterButton;
-    private EditText mNameField;
-    private EditText mScreenNameField;
-    private EditText mPasswordField;
-    private EditText mConfirmPasswordField;
-    private EditText mEmailField;
+    public Button mRegisterButton;
+    public EditText mNameField;
+    public EditText mScreenNameField;
+    public EditText mPasswordField;
+    public EditText mConfirmPasswordField;
+    public EditText mEmailField;
+    public DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,7 @@ public class RegisterAccount extends AppCompatActivity {
         mPasswordField = (EditText) findViewById(R.id.password);
         mConfirmPasswordField = (EditText) findViewById(R.id.confirm_password);
         mEmailField = (EditText) findViewById(R.id.email);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
@@ -91,10 +100,21 @@ public class RegisterAccount extends AppCompatActivity {
             return false;
         }
 
-        new User(extractString(mNameField), extractString(mScreenNameField),
-                extractString(mEmailField), extractString(mPasswordField).hashCode());
+
+        addUserToDatabase(extractString(mNameField), extractString(mScreenNameField), extractString(mEmailField), extractString(mPasswordField).hashCode());
 
         return true;
+    }
+
+    //TODO: This method continuously overwrites ID 1!!! A Fix is needed!
+    private void addUserToDatabase(String name, String screenName, String email, int password) {
+        User user = new User(name, screenName, email, password);
+        DatabaseReference userReference = mDatabase.child("users").child("ID");
+        Map<String, Object> users = new HashMap<String, Object>();
+
+        users.put(email.replace(".", ""), (Object) user);
+
+        userReference.updateChildren(users);
     }
 
     public String extractString(EditText field) {

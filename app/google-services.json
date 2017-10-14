@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "427484610867",
+    "firebase_url": "https://studentmessagingapplication.firebaseio.com",
+    "project_id": "studentmessagingapplication",
+    "storage_bucket": "studentmessagingapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427484610867:android:99f008c1edaafe3c",
+        "android_client_info": {
+          "package_name": "com.mouzakis.arisurfacepro.studentmessagingapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427484610867-9m3de6bcu7nrqkb60cugthdotju7b3dd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mouzakis.arisurfacepro.studentmessagingapplication",
+            "certificate_hash": "09776302e6ab2310269019a2a21b83f2ef42700b"
+          }
+        },
+        {
+          "client_id": "427484610867-n9fqn14tsobfh652ur64l149euqqsr90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFMdZDHDKZkfhVf-jkb2DgonB0As_EUOM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427484610867-n9fqn14tsobfh652ur64l149euqqsr90.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

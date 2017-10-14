@@ -102,18 +102,19 @@ public class RegisterAccount extends AppCompatActivity {
 
 
         addUserToDatabase(extractString(mNameField), extractString(mScreenNameField), extractString(mEmailField), extractString(mPasswordField).hashCode());
-
         return true;
     }
 
-    private void addUserToDatabase(String name, String screenName, String email, int password) {
+    //TODO: Need to make this not allow for the same email address to be used (otherwise the user information is overwritten).
+    //TODO: if you want this to send an email please add functionality
+    private boolean addUserToDatabase(String name, String screenName, String email, int password) {
         User user = new User(name, screenName, email, password);
         DatabaseReference userReference = mDatabase.child("users").child("ID");
         Map<String, Object> users = new HashMap<String, Object>();
-
-        users.put(email.replace(".", ""), (Object) user);
+        users.put(email.replace(".", ""), user);
 
         userReference.updateChildren(users);
+        return true;
     }
 
     public String extractString(EditText field) {

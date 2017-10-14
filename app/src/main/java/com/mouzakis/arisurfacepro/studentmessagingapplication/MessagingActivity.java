@@ -48,7 +48,7 @@ public class MessagingActivity extends AppCompatActivity {
                 FirebaseDatabase.getInstance().getReference().child("message").push().setValue(message);
 
                 messageField.setText("");
-
+//                messageView.setSelection(messageView.getAdapter().getCount()-3);
             }
         });
 
@@ -77,5 +77,6 @@ public class MessagingActivity extends AppCompatActivity {
             }
         };
         messageView.setAdapter(mFirebaseMessageAdapter);
+
     }
 }

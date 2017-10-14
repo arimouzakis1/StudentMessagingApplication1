@@ -106,7 +106,6 @@ public class RegisterAccount extends AppCompatActivity {
         return true;
     }
 
-    //TODO: This method continuously overwrites ID 1!!! A Fix is needed!
     private void addUserToDatabase(String name, String screenName, String email, int password) {
         User user = new User(name, screenName, email, password);
         DatabaseReference userReference = mDatabase.child("users").child("ID");

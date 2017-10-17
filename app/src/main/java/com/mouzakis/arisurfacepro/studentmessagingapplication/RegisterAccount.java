@@ -114,6 +114,9 @@ public class RegisterAccount extends AppCompatActivity {
             return false;
         }
 
+        //Test if email is already being used
+        boolean isEmailInUse = isEmailInUse();
+
 
         boolean userSuccessfullyAdded = addUserToDatabase(extractString(mNameField), extractString(mScreenNameField),
                 extractString(mEmailField).toLowerCase(), extractString(mPasswordField).hashCode(),
@@ -125,6 +128,11 @@ public class RegisterAccount extends AppCompatActivity {
         }
 
         return userSuccessfullyAdded;
+    }
+
+    //Check if email is in Use - TODO: finish the method
+    private boolean isEmailInUse() {
+
     }
 
     //TODO: Need to make this not allow for the same email address to be used (otherwise the user information is overwritten).

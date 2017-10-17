@@ -35,7 +35,7 @@ public class MessagingActivity extends AppCompatActivity {
         fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
         messageField = (EditText) findViewById(R.id.message_to_be_sent);
         messageView = (ListView) findViewById(R.id.list_of_messages);
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("message");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("message").child(RegisterAccount.loggedInUser.getTutorialCode());
 
 
         displayChatMessages();
@@ -43,12 +43,12 @@ public class MessagingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Make a way to find the user that in currently logged in
-                Message message = new Message("User1", messageField.getText().toString());
-                FirebaseDatabase.getInstance().getReference().child("message").push().setValue(message);
+                //TODO: Make a way to find the user that in currently logged in - add their tutorial code with .getTutorialCode()
+                Message message = new Message(RegisterAccount.loggedInUser.getScreenName(), messageField.getText().toString());
+                FirebaseDatabase.getInstance().getReference().child("message").child(RegisterAccount.loggedInUser.getTutorialCode()).push().setValue(message);
 
                 messageField.setText("");
-//                messageView.setSelection(messageView.getAdapter().getCount()-3);
+                messageView.setSelection((messageView.getAdapter().getCount()) + 1);
             }
         });
 
@@ -77,6 +77,5 @@ public class MessagingActivity extends AppCompatActivity {
             }
         };
         messageView.setAdapter(mFirebaseMessageAdapter);
-
     }
 }

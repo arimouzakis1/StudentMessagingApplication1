@@ -19,4 +19,5 @@
     <string name="create_account">Create Account</string>
     <string name="invalid_login">Email address or password is incorrect</string>
     <string name="required_field">Required Field</string>
+    <string name="tutorial_code">Tutorial Code</string>
 </resources>

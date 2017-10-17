@@ -31,7 +31,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity"/>
         </activity>
-        <activity android:name=".MessagingActivity">
+        <activity
+            android:name=".MessagingActivity"
+            android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

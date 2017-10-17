@@ -9,12 +9,14 @@ public class User {
     private String screenName;
     private int password;
     private String email;
+    private String tutorialCode;
 
-    public User(String name, String screenName, String email, int password) {
+    public User(String name, String screenName, String email, int password, String tutorialCode) {
         this.name = name;
         this.screenName = screenName;
         this.password = password;
         this.email = email;
+        this.tutorialCode = tutorialCode;
     }
 
 
@@ -34,4 +36,7 @@ public class User {
         return email;
     }
 
+    public String getTutorialCode() {
+        return tutorialCode;
+    }
 }

@@ -22,6 +22,8 @@ public class RegisterAccount extends AppCompatActivity {
     public EditText mPasswordField;
     public EditText mConfirmPasswordField;
     public EditText mEmailField;
+    public EditText mTutorialCodeField;
+    public static User loggedInUser;
     public DatabaseReference mDatabase;
 
 
@@ -37,6 +39,8 @@ public class RegisterAccount extends AppCompatActivity {
         mConfirmPasswordField = (EditText) findViewById(R.id.confirm_password);
         mEmailField = (EditText) findViewById(R.id.email);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mTutorialCodeField = (EditText) findViewById(R.id.tutorial_code);
+
 
 
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +51,9 @@ public class RegisterAccount extends AppCompatActivity {
                 if (registeredUser) {
                     Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
                     startActivity(intent);
+                } else {
+                    mTutorialCodeField.setError("Registration failed - please try again later");
+                    mTutorialCodeField.requestFocus();
                 }
             }
         });
@@ -100,18 +107,33 @@ public class RegisterAccount extends AppCompatActivity {
             return false;
         }
 
+        //Test if tutorial field is Null
+        if (extractString(mTutorialCodeField).isEmpty()) {
+            mTutorialCodeField.setError(getString(R.string.required_field));
+            mTutorialCodeField.requestFocus();
+            return false;
+        }
 
-        addUserToDatabase(extractString(mNameField), extractString(mScreenNameField), extractString(mEmailField), extractString(mPasswordField).hashCode());
-        return true;
+
+        boolean userSuccessfullyAdded = addUserToDatabase(extractString(mNameField), extractString(mScreenNameField),
+                extractString(mEmailField).toLowerCase(), extractString(mPasswordField).hashCode(),
+                extractString(mTutorialCodeField).toUpperCase());
+
+        //If user is NOT successfully added then remove the loggedInUser screen name from "cache"
+        if (!userSuccessfullyAdded) {
+            loggedInUser = null;
+        }
+
+        return userSuccessfullyAdded;
     }
 
     //TODO: Need to make this not allow for the same email address to be used (otherwise the user information is overwritten).
     //TODO: if you want this to send an email please add functionality
-    private boolean addUserToDatabase(String name, String screenName, String email, int password) {
-        User user = new User(name, screenName, email, password);
+    private boolean addUserToDatabase(String name, String screenName, String email, int password, String tutorialCode) {
+        loggedInUser = new User(name, screenName, email, password, tutorialCode);
         DatabaseReference userReference = mDatabase.child("users").child("ID");
         Map<String, Object> users = new HashMap<String, Object>();
-        users.put(email.replace(".", ""), user);
+        users.put(email.replace(".", ""), loggedInUser);
 
         userReference.updateChildren(users);
         return true;

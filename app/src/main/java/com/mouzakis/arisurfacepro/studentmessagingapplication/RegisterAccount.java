@@ -49,7 +49,7 @@ public class RegisterAccount extends AppCompatActivity {
                 boolean registeredUser = createNewUser();
 
                 if (registeredUser) {
-                    Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), HubActivity.class);
                     startActivity(intent);
                 } else {
                     mTutorialCodeField.setError("Registration failed - please try again later");
@@ -117,6 +117,12 @@ public class RegisterAccount extends AppCompatActivity {
         //Test if email is already being used
         boolean isEmailInUse = isEmailInUse();
 
+        if (isEmailInUse) {
+            mEmailField.setError("Email already in use - please choose a unique email");
+            mEmailField.requestFocus();
+            return false;
+        }
+
 
         boolean userSuccessfullyAdded = addUserToDatabase(extractString(mNameField), extractString(mScreenNameField),
                 extractString(mEmailField).toLowerCase(), extractString(mPasswordField).hashCode(),
@@ -133,6 +139,7 @@ public class RegisterAccount extends AppCompatActivity {
     //Check if email is in Use - TODO: finish the method
     private boolean isEmailInUse() {
 
+        return false;
     }
 
     //TODO: Need to make this not allow for the same email address to be used (otherwise the user information is overwritten).

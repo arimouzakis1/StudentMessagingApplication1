@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StudentMessagingApplication</string>
+    <string name="app_name">Student Banter</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -20,4 +20,9 @@
     <string name="invalid_login">Email address or password is incorrect</string>
     <string name="required_field">Required Field</string>
     <string name="tutorial_code">Tutorial Code</string>
+    <string name="question_board_heading">Question Board</string>
+    <string name="resource_hub_heading">Resource Hub</string>
+    <string name="subject_of_post">Subject</string>
+    <string name="post_question_text">Please enter your question</string>
+    <string name="number_of_replies">Number of replies: </string>
 </resources>

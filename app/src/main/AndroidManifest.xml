@@ -35,6 +35,14 @@
             android:name=".MessagingActivity"
             android:windowSoftInputMode="stateHidden">
         </activity>
+        <activity android:name=".QuestionBoardActivity">
+        </activity>
+        <activity android:name=".HubActivity">
+        </activity>
+        <activity android:name=".ResourceHubActivity">
+        </activity>
+        <activity android:name=".PostingActivity">
+        </activity>
     </application>
 
 </manifest>

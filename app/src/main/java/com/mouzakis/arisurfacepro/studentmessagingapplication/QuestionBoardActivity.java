@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,6 +12,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -101,8 +105,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
 
                 //Fill the fields with values and display on the screen
                 postUser.setText(model.getPosteeName());
-//                calculateNumberOfReplies(model);
-//                postNumberOfReplies.setText((int) replyCount);
+                calculateNumberOfReplies(model);
                 postNumberOfReplies.setText(model.getNumberOfRepliesCount().toString());
                 postSubject.setText(model.getPostHeading());
 
@@ -124,53 +127,58 @@ public class QuestionBoardActivity extends AppCompatActivity {
         postView.setAdapter(mFirebasePostAdapter);
     }
 
-//    private void calculateNumberOfReplies(Post post) {
-//        //Format and get correct timezone for Australia
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-//        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ssa");
-//        dateFormat.setTimeZone(TimeZone.getTimeZone("Australia/NSW"));
-//        timeFormat.setTimeZone(TimeZone.getTimeZone("Australia/NSW"));
-//
-//        if (RegisterAccount.loggedInUser != null) {
+    private void calculateNumberOfReplies(Post post) {
+        //Format and get correct timezone for Australia
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ssa");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("Australia/NSW"));
+        timeFormat.setTimeZone(TimeZone.getTimeZone("Australia/NSW"));
+
+        if (RegisterAccount.loggedInUser != null) {
+            mDatabaseReferenceForRepliesCount = FirebaseDatabase.getInstance().getReference().child("reply")
+                    .child(RegisterAccount.loggedInUser.getTutorialCode())
+                    .child(post.getPostHeading() + " " + dateFormat.format(post.getPostTime()) + " "
+                            + timeFormat.format(post.getPostTime()));
+            Log.d("Database child: ", post.getPostHeading() + " " + dateFormat.format(post.getPostTime()) + " "
+                    + timeFormat.format(post.getPostTime()));
+        }
+        //TODO: add login reference from a user NOT creating a new account
+        else {
 //            mDatabaseReferenceForRepliesCount = FirebaseDatabase.getInstance().getReference().child("reply")
-//                    .child(RegisterAccount.loggedInUser.getTutorialCode())
-//                    .child(post.getPostHeading() + " " + dateFormat.format(post.getPostTime()) + " "
-//                            + timeFormat.format(post.getPostTime()));
-//        }
-//        //TODO: add login reference from a user NOT creating a new account
-//        else {
-////            mDatabaseReferenceForRepliesCount = FirebaseDatabase.getInstance().getReference().child("reply")
-////change this line!!!                    .child(RegisterAccount.loggedInUser.getTutorialCode())
-////                    .child(extractString(postSubject) + " " + extractString(postDate) + " " + extractString(postTime));
-//        }
-//
-//        mDatabaseReferenceForRepliesCount.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                replyCount = dataSnapshot.getChildrenCount();
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+//change this line!!!                    .child(RegisterAccount.loggedInUser.getTutorialCode())
+//                    .child(extractString(postSubject) + " " + extractString(postDate) + " " + extractString(postTime));
+        }
+
+        mDatabaseReferenceForRepliesCount.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                replyCount = dataSnapshot.getChildrenCount();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        post.setNumberOfRepliesCount((int) replyCount);
+        Log.d("Reply Count: ", Long.toString(replyCount));
+    }
 
 
     private void postQuestion(Post post) {

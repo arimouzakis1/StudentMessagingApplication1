@@ -44,8 +44,8 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
 
         //TODO: create this for logged in user
         if (RegisterAccount.loggedInUser != null) {
-            mDatabase = FirebaseDatabase.getInstance().getReference().child("reply").
-                    child(RegisterAccount.loggedInUser.getTutorialCode());
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("reply")
+                    .child(RegisterAccount.loggedInUser.getTutorialCode());
         }
 
         //TODO: add in an if statement below to check if its the user that logged in (if not make the visibility to GONE)
@@ -75,7 +75,8 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
 
                 Reply reply = new Reply(replyingUser, replyText);
 
-                mDatabase.push().setValue(reply);
+                mDatabase.child(extractString(postSubject) + " " + extractString(postDate) + " " + extractString(postTime))
+                        .push().setValue(reply);
             }
         }
     }
@@ -105,7 +106,8 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
     }
 
     private void displayReplies() {
-        mFirebaseReplyAdapter = new FirebaseListAdapter<Reply>(this, Reply.class, R.layout.reply, mDatabase) {
+        mFirebaseReplyAdapter = new FirebaseListAdapter<Reply>(this, Reply.class, R.layout.reply, mDatabase
+                .child(extractString(postSubject) + " " + extractString(postDate) + " " + extractString(postTime))) {
             @Override
             protected void populateView(View v, Reply model, int position) {
                 replyingUser = v.findViewById(R.id.replying_user_name);

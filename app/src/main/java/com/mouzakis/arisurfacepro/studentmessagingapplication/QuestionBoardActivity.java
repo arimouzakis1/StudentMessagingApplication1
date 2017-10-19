@@ -21,6 +21,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     public static final int CREATE_NEW_POST = 1;
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseReferenceForRepliesCount;
     private FirebaseListAdapter<Post> mFirebasePostAdapter;
     private TextView postUser;
     private TextView postNumberOfReplies;
@@ -31,6 +32,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
     private Button deletePostButton;
     public static Post post;
     public static long postId;
+    private long replyCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,8 @@ public class QuestionBoardActivity extends AppCompatActivity {
 
                 //Fill the fields with values and display on the screen
                 postUser.setText(model.getPosteeName());
+//                calculateNumberOfReplies(model);
+//                postNumberOfReplies.setText((int) replyCount);
                 postNumberOfReplies.setText(model.getNumberOfRepliesCount().toString());
                 postSubject.setText(model.getPostHeading());
 
@@ -119,6 +123,54 @@ public class QuestionBoardActivity extends AppCompatActivity {
         };
         postView.setAdapter(mFirebasePostAdapter);
     }
+
+//    private void calculateNumberOfReplies(Post post) {
+//        //Format and get correct timezone for Australia
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+//        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ssa");
+//        dateFormat.setTimeZone(TimeZone.getTimeZone("Australia/NSW"));
+//        timeFormat.setTimeZone(TimeZone.getTimeZone("Australia/NSW"));
+//
+//        if (RegisterAccount.loggedInUser != null) {
+//            mDatabaseReferenceForRepliesCount = FirebaseDatabase.getInstance().getReference().child("reply")
+//                    .child(RegisterAccount.loggedInUser.getTutorialCode())
+//                    .child(post.getPostHeading() + " " + dateFormat.format(post.getPostTime()) + " "
+//                            + timeFormat.format(post.getPostTime()));
+//        }
+//        //TODO: add login reference from a user NOT creating a new account
+//        else {
+////            mDatabaseReferenceForRepliesCount = FirebaseDatabase.getInstance().getReference().child("reply")
+////change this line!!!                    .child(RegisterAccount.loggedInUser.getTutorialCode())
+////                    .child(extractString(postSubject) + " " + extractString(postDate) + " " + extractString(postTime));
+//        }
+//
+//        mDatabaseReferenceForRepliesCount.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                replyCount = dataSnapshot.getChildrenCount();
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
 
     private void postQuestion(Post post) {

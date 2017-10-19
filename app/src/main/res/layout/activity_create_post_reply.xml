@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    tools:context="com.mouzakis.arisurfacepro.studentmessagingapplication.CreatePostReply">
+
+    <TextView
+        android:id="@+id/question_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/question_heading"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_below="@+id/delete_post_button"/>
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/example_question_long"
+        android:layout_below="@+id/question_heading"
+        android:fontFamily="serif"/>
+
+    <EditText
+        android:id="@+id/reply_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/question_text"
+        android:hint="Type Reply Here"
+        android:gravity="start"
+        android:textAlignment="viewStart"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/post_reply_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_alignParentEnd="true"
+        app:fabSize="normal"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

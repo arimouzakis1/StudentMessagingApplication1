@@ -26,4 +26,8 @@
     <string name="post_question_text">Please enter your question</string>
     <string name="number_of_replies">Number of replies: </string>
     <string name="delete_post">Delete</string>
+    <string name="example_question_long">This is the question text. This could be quite long as it needs to describe what the user is having troubles with. Trying to make the text reasonably long to see what a longer question would look like on the screen.</string>
+    <string name="question_heading">Question:</string>
+    <string name="reply">reply</string>
+    <string name="reply_heading">Reply:</string>
 </resources>

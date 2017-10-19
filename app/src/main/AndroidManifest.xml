@@ -43,6 +43,10 @@
         </activity>
         <activity android:name=".PostingActivity">
         </activity>
+        <activity android:name=".SeeRepliesToPostActivity">
+        </activity>
+        <activity android:name=".CreatePostReply">
+        </activity>
     </application>
 
 </manifest>

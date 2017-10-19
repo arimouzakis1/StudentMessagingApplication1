@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_margin="@dimen/activity_horizontal_margin">
+
+    <TextView
+        android:id="@+id/replying_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        tools:text="Ari Mouzakis"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:id="@+id/reply_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="1/1/2000"
+        android:textStyle="italic"
+        android:layout_toLeftOf="@+id/post_time"
+        android:layout_marginRight="6dp"/>
+
+    <TextView
+        android:id="@+id/reply_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        tools:text="9:00am"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/reply_text"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/example_question_long"
+        android:layout_below="@+id/postee_name"
+        android:fontFamily="serif"/>
+
+</RelativeLayout>

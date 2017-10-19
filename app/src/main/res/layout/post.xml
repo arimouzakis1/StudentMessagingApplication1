@@ -62,10 +62,12 @@
         android:id="@+id/delete_post_button"
         android:layout_width="70dp"
         android:layout_height="35dp"
-        tools:text="@string/delete_post"
+        android:text="@string/delete_post"
         android:textStyle="italic"
         android:textSize="10sp"
-        android:layout_below="@+id/post_date"
+        android:layout_alignBaseline="@+id/post_time"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:visibility="gone"/>
 
 

@@ -42,18 +42,14 @@ public class RegisterAccount extends AppCompatActivity {
         mTutorialCodeField = (EditText) findViewById(R.id.tutorial_code);
 
 
-
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean registeredUser = createNewUser();
+                boolean newUserSuccessfullyCreated = createNewUser();
 
-                if (registeredUser) {
+                if (newUserSuccessfullyCreated) {
                     Intent intent = new Intent(getApplicationContext(), HubActivity.class);
                     startActivity(intent);
-                } else {
-                    mTutorialCodeField.setError("Registration failed - please try again later");
-                    mTutorialCodeField.requestFocus();
                 }
             }
         });

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class QuestionBoardActivity extends AppCompatActivity {
     private TextView postTime;
     private ListView postView;
     private Button deletePostButton;
+    public static Post post;
+    public static long postId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,18 @@ public class QuestionBoardActivity extends AppCompatActivity {
                 startActivityForResult(intent, CREATE_NEW_POST);
             }
         });
+
+        //TODO: finish this onClick listener
+        postView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                post = (Post) postView.getAdapter().getItem(i);
+                postId = postView.getAdapter().getItemId(i);
+                Intent intent = new Intent(getApplicationContext(), SeeRepliesToPostActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -80,6 +95,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
                 postSubject = v.findViewById(R.id.post_heading);
                 postDate = v.findViewById(R.id.post_date);
                 postTime = v.findViewById(R.id.post_time);
+                deletePostButton = v.findViewById(R.id.delete_post_button);
 
                 //Fill the fields with values and display on the screen
                 postUser.setText(model.getPosteeName());
@@ -95,9 +111,9 @@ public class QuestionBoardActivity extends AppCompatActivity {
                 postDate.setText(dateFormat.format(model.getPostTime()));
                 postTime.setText(timeFormat.format(model.getPostTime()));
 
-                //TODO: add in a "OR" statement in the below if statement to check if its the user that logged in
-                if (RegisterAccount.loggedInUser.getName() == extractString(postUser)) {
-                    deletePostButton.setVisibility(View.VISIBLE);
+                //TODO: add in an if statement below to check if its the user that logged in (if not make the visibility to GONE)
+                if (!RegisterAccount.loggedInUser.getName().toLowerCase().matches(extractString(postUser).toLowerCase())) {
+                    deletePostButton.setVisibility(View.GONE);
                 }
             }
         };

@@ -127,6 +127,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
         postView.setAdapter(mFirebasePostAdapter);
     }
 
+    //TODO: THIS METHOD DOESN'T WORK!!!!!!!!!!
     private void calculateNumberOfReplies(Post post) {
         //Format and get correct timezone for Australia
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
@@ -153,21 +154,25 @@ public class QuestionBoardActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 replyCount = dataSnapshot.getChildrenCount();
+                Log.d("DatabaseForRepliesCount", "dataSnapshot has been taken!");
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                replyCount = dataSnapshot.getChildrenCount();
+                Log.d("DatabaseForRepliesCount", "dataSnapshot has been taken!");
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                replyCount = dataSnapshot.getChildrenCount();
+                Log.d("DatabaseForRepliesCount", "dataSnapshot has been taken!");
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+                replyCount = dataSnapshot.getChildrenCount();
+                Log.d("DatabaseForRepliesCount", "dataSnapshot has been taken!");
             }
 
             @Override

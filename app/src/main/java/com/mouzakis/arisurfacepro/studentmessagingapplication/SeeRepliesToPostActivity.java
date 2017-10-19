@@ -44,8 +44,8 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
 
         //TODO: create this for logged in user
         if (RegisterAccount.loggedInUser != null) {
-            mDatabase = FirebaseDatabase.getInstance().getReference().child(RegisterAccount.loggedInUser.getTutorialCode())
-                    .child(String.valueOf(QuestionBoardActivity.postId)).child("reply");
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("reply").
+                    child(RegisterAccount.loggedInUser.getTutorialCode());
         }
 
         //TODO: add in an if statement below to check if its the user that logged in (if not make the visibility to GONE)

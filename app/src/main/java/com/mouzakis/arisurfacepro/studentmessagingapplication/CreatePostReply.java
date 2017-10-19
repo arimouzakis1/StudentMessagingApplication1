@@ -35,7 +35,6 @@ public class CreatePostReply extends AppCompatActivity {
                 }
                 intent.putExtra(REPLYING_USER, RegisterAccount.loggedInUser.getName());
                 setResult(RESULT_OK, intent);
-                QuestionBoardActivity.post.setNumberOfRepliesCount(QuestionBoardActivity.post.getNumberOfRepliesCount() + 1);
                 finish();
             }
         });

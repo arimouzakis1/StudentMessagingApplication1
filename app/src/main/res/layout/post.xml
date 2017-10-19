@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Margin vs Padding!"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:layout_below="@+id/postee_name"
         android:layout_marginBottom="6dp"/>
@@ -57,5 +57,16 @@
         android:textStyle="italic"
         android:layout_toRightOf="@+id/post_date"
         android:layout_below="@+id/post_heading"/>
+
+    <Button
+        android:id="@+id/delete_post_button"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        tools:text="@string/delete_post"
+        android:textStyle="italic"
+        android:textSize="10sp"
+        android:layout_below="@+id/post_date"
+        android:visibility="gone"/>
+
 
 </RelativeLayout>

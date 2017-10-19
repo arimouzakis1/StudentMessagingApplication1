@@ -155,12 +155,12 @@ public class RegisterAccount extends AppCompatActivity {
     }
 
     public String extractString(EditText field) {
-        return field.getText().toString();
+        return field.getText().toString().trim();
     }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@ad.unsw.edu.au");
+        return email.toLowerCase().contains("@ad.unsw.edu.au");
     }
 
     private boolean isPasswordValid(String password) {

@@ -1,5 +1,7 @@
 package com.mouzakis.arisurfacepro.studentmessagingapplication;
 
+import java.util.Date;
+
 /**
  * Created by AriSurfacePro on 18/10/2017.
  */
@@ -7,14 +9,20 @@ package com.mouzakis.arisurfacepro.studentmessagingapplication;
 public class Post {
     private String posteeName;
     private String postHeading;
+    private String postQuestion;
     private long postTime;
-    private int numberOfRepliesCount;
+    private Integer numberOfRepliesCount;
 
-    public Post(String posteeName, String postHeading, long postTime, int numberOfRepliesCount) {
+    public Post(String posteeName, String postHeading, String postQuestion) {
         this.posteeName = posteeName;
         this.postHeading = postHeading;
-        this.postTime = postTime;
-        this.numberOfRepliesCount = numberOfRepliesCount;
+        this.postQuestion = postQuestion;
+        this.postTime = new Date().getTime();
+        this.numberOfRepliesCount = 0;
+    }
+
+    public Post() {
+
     }
 
     public String getPosteeName() {
@@ -41,11 +49,19 @@ public class Post {
         this.postTime = postTime;
     }
 
-    public int getNumberOfRepliesCount() {
+    public Integer getNumberOfRepliesCount() {
         return numberOfRepliesCount;
     }
 
-    public void setNumberOfRepliesCount(int numberOfRepliesCount) {
+    public void setNumberOfRepliesCount(Integer numberOfRepliesCount) {
         this.numberOfRepliesCount = numberOfRepliesCount;
+    }
+
+    public String getPostQuestion() {
+        return postQuestion;
+    }
+
+    public void setPostQuestion(String postQuestion) {
+        this.postQuestion = postQuestion;
     }
 }

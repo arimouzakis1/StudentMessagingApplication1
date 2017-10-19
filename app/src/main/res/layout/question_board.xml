@@ -24,7 +24,7 @@
 
 
     <ListView
-        android:id="@+id/list_of_messages"
+        android:id="@+id/list_of_posts"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:divider="@android:color/transparent"

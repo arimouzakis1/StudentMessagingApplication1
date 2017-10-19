@@ -17,7 +17,7 @@ import java.util.TimeZone;
 
 public class SeeRepliesToPostActivity extends AppCompatActivity {
     private Button replyButton;
-    private static final int CREATE_POST_REPLY = 2;
+    public static final int CREATE_POST_REPLY = 2;
     private TextView postUser;
     private TextView postSubject;
     private TextView postDate;
@@ -65,6 +65,20 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
         });
     }
 
+    //Gets the result from the intent and uses this data to create a new reply to a post
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CREATE_POST_REPLY) {
+            if (resultCode == RESULT_OK) {
+                String replyText = data.getStringExtra(CreatePostReply.REPLY);
+                String replyingUser = data.getStringExtra(CreatePostReply.REPLYING_USER);
+
+                Reply reply = new Reply(replyingUser, replyText);
+
+                mDatabase.push().setValue(reply);
+            }
+        }
+    }
 
     private void displayQuestion() {
         postUser = (TextView) findViewById(R.id.postee_name);
@@ -108,8 +122,8 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
                 dateFormat.setTimeZone(TimeZone.getTimeZone("Australia/NSW"));
                 timeFormat.setTimeZone(TimeZone.getTimeZone("Australia/NSW"));
 
-                postDate.setText(dateFormat.format(model.getTimeOfReply()));
-                postTime.setText(timeFormat.format(model.getTimeOfReply()));
+                replyDate.setText(dateFormat.format(model.getTimeOfReply()));
+                replyTime.setText(timeFormat.format(model.getTimeOfReply()));
 
                 replyText.setText(model.getReplyText());
             }

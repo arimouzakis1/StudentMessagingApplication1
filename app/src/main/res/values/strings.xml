@@ -30,4 +30,5 @@
     <string name="question_heading">Question:</string>
     <string name="reply">reply</string>
     <string name="reply_heading">Reply:</string>
+    <string name="replies_heading">Replies:</string>
 </resources>

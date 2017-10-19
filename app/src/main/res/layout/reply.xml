@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         tools:text="1/1/2000"
         android:textStyle="italic"
-        android:layout_toLeftOf="@+id/post_time"
+        android:layout_toLeftOf="@+id/reply_time"
         android:layout_marginRight="6dp"/>
 
     <TextView

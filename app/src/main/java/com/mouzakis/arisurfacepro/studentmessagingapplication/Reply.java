@@ -11,10 +11,14 @@ public class Reply {
     private long timeOfReply;
     private String replyText;
 
-    public Reply(String replyingUser, long timeOfReply, String replyText) {
+    public Reply(String replyingUser, String replyText) {
         this.replyingUser = replyingUser;
         this.timeOfReply = new Date().getTime();
         this.replyText = replyText;
+    }
+
+    public Reply() {
+
     }
 
     public String getReplyingUser() {

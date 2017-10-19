@@ -1,8 +1,10 @@
 package com.mouzakis.arisurfacepro.studentmessagingapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -10,6 +12,8 @@ public class CreatePostReply extends AppCompatActivity {
     private TextView question;
     private EditText replyField;
     private FloatingActionButton fab;
+    public static final String REPLY = "reply";
+    public static final String REPLYING_USER = "replying_user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +26,22 @@ public class CreatePostReply extends AppCompatActivity {
 
         question.setText(QuestionBoardActivity.post.getPostQuestion());
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                if (!extractString(replyField).isEmpty()) {
+                    intent.putExtra(REPLY, extractString(replyField));
+                }
+                intent.putExtra(REPLYING_USER, RegisterAccount.loggedInUser.getName());
+                setResult(RESULT_OK, intent);
+                QuestionBoardActivity.post.setNumberOfRepliesCount(QuestionBoardActivity.post.getNumberOfRepliesCount() + 1);
+                finish();
+            }
+        });
+    }
+
+    public String extractString(TextView field) {
+        return field.getText().toString().trim();
     }
 }

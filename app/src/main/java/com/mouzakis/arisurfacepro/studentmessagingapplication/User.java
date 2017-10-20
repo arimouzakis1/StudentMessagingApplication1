@@ -19,6 +19,9 @@ public class User {
         this.tutorialCode = tutorialCode;
     }
 
+    public User() {
+
+    }
 
     public String getName() {
         return name;

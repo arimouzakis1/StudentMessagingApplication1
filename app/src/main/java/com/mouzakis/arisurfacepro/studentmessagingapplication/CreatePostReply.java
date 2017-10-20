@@ -12,6 +12,7 @@ public class CreatePostReply extends AppCompatActivity {
     private TextView question;
     private EditText replyField;
     private FloatingActionButton fab;
+    private User mUser;
     public static final String REPLY = "reply";
     public static final String REPLYING_USER = "replying_user";
 
@@ -19,6 +20,7 @@ public class CreatePostReply extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post_reply);
+        mUser = Utils.getLoggedInUser();
 
         question = (TextView) findViewById(R.id.question_text);
         replyField = (EditText) findViewById(R.id.reply_field);
@@ -33,7 +35,7 @@ public class CreatePostReply extends AppCompatActivity {
                 if (!extractString(replyField).isEmpty()) {
                     intent.putExtra(REPLY, extractString(replyField));
                 }
-                intent.putExtra(REPLYING_USER, RegisterAccount.loggedInUser.getName());
+                intent.putExtra(REPLYING_USER, mUser.getName());
                 setResult(RESULT_OK, intent);
                 finish();
             }

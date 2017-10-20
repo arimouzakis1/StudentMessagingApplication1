@@ -31,6 +31,7 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
     private TextView replyTime;
     private TextView replyDate;
     private TextView replyText;
+    private User mUser;
 
 
     @Override
@@ -41,15 +42,13 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
         replyButton = (Button) findViewById(R.id.reply_to_post_button);
         deletePostButton = (Button) findViewById(R.id.delete_post_button);
         replyView = (ListView) findViewById(R.id.post_replies_view);
+        mUser = Utils.getLoggedInUser();
 
-        //TODO: create this for logged in user
-        if (RegisterAccount.loggedInUser != null) {
-            mDatabase = FirebaseDatabase.getInstance().getReference().child("reply")
-                    .child(RegisterAccount.loggedInUser.getTutorialCode());
-        }
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("reply")
+                .child(mUser.getTutorialCode());
 
-        //TODO: add in an if statement below to check if its the user that logged in (if not make the visibility to GONE)
-        if (!RegisterAccount.loggedInUser.getName().toLowerCase().matches(QuestionBoardActivity.post.getPosteeName().toLowerCase())) {
+        //TODO: add in delete functionality or delete this method
+        if (mUser.getName().toLowerCase().matches(QuestionBoardActivity.post.getPosteeName().toLowerCase())) {
             deletePostButton.setVisibility(View.GONE);
         }
 

@@ -25,6 +25,7 @@ public class MessagingActivity extends AppCompatActivity {
     private TextView messageTime;
     private TextView messageDate;
     private DatabaseReference mDatabase;
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,8 @@ public class MessagingActivity extends AppCompatActivity {
         fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
         messageField = (EditText) findViewById(R.id.message_to_be_sent);
         messageView = (ListView) findViewById(R.id.list_of_messages);
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("message").child(RegisterAccount.loggedInUser.getTutorialCode());
+        mUser = Utils.getLoggedInUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("message").child(mUser.getTutorialCode());
 
 
         displayChatMessages();
@@ -43,9 +45,8 @@ public class MessagingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Make a way to find the user that in currently logged in - add their tutorial code with .getTutorialCode()
-                Message message = new Message(RegisterAccount.loggedInUser.getScreenName(), messageField.getText().toString());
-                FirebaseDatabase.getInstance().getReference().child("message").child(RegisterAccount.loggedInUser.getTutorialCode()).push().setValue(message);
+                Message message = new Message(mUser.getScreenName(), messageField.getText().toString());
+                FirebaseDatabase.getInstance().getReference().child("message").child(mUser.getTutorialCode()).push().setValue(message);
 
                 messageField.setText("");
                 messageView.setSelection((messageView.getAdapter().getCount()) + 1);

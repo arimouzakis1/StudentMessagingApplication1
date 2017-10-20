@@ -54,8 +54,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final int REQUEST_READ_CONTACTS = 0;
     private static final String LOG_TAG = "Login Activity: ";
     private DatabaseReference mDatabase;
-    private static boolean loggedInSuccessfully = false;
-    private static User loggedInUser;
+    private static boolean loggedInSuccessfully;
+    public static User loggedInUser = null;
 
 
     /**

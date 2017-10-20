@@ -11,6 +11,7 @@ public class PostingActivity extends AppCompatActivity {
     private EditText postSubject;
     private EditText postQuestion;
     private FloatingActionButton fab;
+    private User mUser;
     public static final String USER = "user";
     public static final String SUBJECT = "subject";
     public static final String QUESTION = "question";
@@ -23,6 +24,7 @@ public class PostingActivity extends AppCompatActivity {
         postSubject = (EditText) findViewById(R.id.post_subject);
         postQuestion = (EditText) findViewById(R.id.post_question_text);
         fab = (FloatingActionButton) findViewById(R.id.post_question_button);
+        mUser = Utils.getLoggedInUser();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,15 +35,10 @@ public class PostingActivity extends AppCompatActivity {
                     Intent intent = new Intent();
 
                     //Add the data to the intent to be sent back to main activity
-                    if (RegisterAccount.loggedInUser != null) {
-                        intent.putExtra(USER, RegisterAccount.loggedInUser.getName());
-                    }
-                    //TODO: add the identifier if the user is logged in (rather than newly registered)
-                    else {
-//                        intent.putExtra(USER, )
-                    }
+                    intent.putExtra(USER, mUser.getName());
                     intent.putExtra(SUBJECT, extractString(postSubject));
                     intent.putExtra(QUESTION, extractString(postQuestion));
+
                     setResult(RESULT_OK, intent);
                     finish();
                 }

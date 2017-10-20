@@ -23,7 +23,7 @@ public class RegisterAccount extends AppCompatActivity {
     public EditText mConfirmPasswordField;
     public EditText mEmailField;
     public EditText mTutorialCodeField;
-    public static User loggedInUser;
+    public static User loggedInUser = null;
     public DatabaseReference mDatabase;
 
 

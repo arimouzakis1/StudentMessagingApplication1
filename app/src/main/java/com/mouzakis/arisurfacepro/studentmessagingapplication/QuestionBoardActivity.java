@@ -33,6 +33,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
     public static Post post;
     public static long postId;
     private long replyCount;
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +41,9 @@ public class QuestionBoardActivity extends AppCompatActivity {
         setContentView(R.layout.question_board);
 
         fab = (FloatingActionButton) findViewById(R.id.create_new_posting);
-        if (RegisterAccount.loggedInUser != null) {
-            mDatabase = FirebaseDatabase.getInstance().getReference().child("post").child(RegisterAccount.loggedInUser.getTutorialCode());
-        }
-        //TODO: add login reference from a user NOT creating a new account
-        else {
-//            mDatabase = FirebaseDatabase.getInstance().getReference().child("post").child();
-        }
+        mUser = Utils.getLoggedInUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("post").child(mUser.getTutorialCode());
+
         postView = (ListView) findViewById(R.id.list_of_posts);
 
         displayPosts();
@@ -114,8 +111,8 @@ public class QuestionBoardActivity extends AppCompatActivity {
                 postDate.setText(dateFormat.format(model.getPostTime()));
                 postTime.setText(timeFormat.format(model.getPostTime()));
 
-                //TODO: add in an if statement below to check if its the user that logged in (if not make the visibility to GONE)
-                if (!RegisterAccount.loggedInUser.getName().toLowerCase().matches(extractString(postUser).toLowerCase())) {
+                //TODO: add in delete functionality or delete this method
+                if (!mUser.getName().toLowerCase().matches(extractString(postUser).toLowerCase())) {
                     deletePostButton.setVisibility(View.GONE);
                 }
             }

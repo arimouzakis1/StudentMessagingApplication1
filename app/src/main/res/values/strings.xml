@@ -33,4 +33,5 @@
     <string name="replies_heading">Replies:</string>
     <string name="description_of_resource">Description of Resource</string>
     <string name="hyperlink_hint">Hyperlink</string>
+    <string name="resource_invalid_error">Please enter a valid hyperlink</string>
 </resources>

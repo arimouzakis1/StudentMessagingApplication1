@@ -60,6 +60,12 @@ public class ResourcePostingActivity extends AppCompatActivity {
             return false;
         }
 
+        if (!extractString(resourceHyperlink).trim().toLowerCase().contains("www.")) {
+            resourceHyperlink.setError(getString(R.string.resource_invalid_error));
+            resourceHyperlink.requestFocus();
+            return false;
+        }
+
         return true;
     }
 

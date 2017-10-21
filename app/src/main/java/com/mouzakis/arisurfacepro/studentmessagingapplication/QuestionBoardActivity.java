@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -12,12 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
@@ -40,7 +35,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
     public static Post post;
     public static long postId;
     private User mUser;
-    private long replyCount;
+//    private long replyCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +91,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
             @Override
             protected void populateView(View v, Post model, int position) {
                 postUser = v.findViewById(R.id.postee_name);
-                postNumberOfReplies = v.findViewById(R.id.number_of_replies);
+//                postNumberOfReplies = v.findViewById(R.id.number_of_replies);
                 postSubject = v.findViewById(R.id.post_heading);
                 postDate = v.findViewById(R.id.post_date);
                 postTime = v.findViewById(R.id.post_time);
@@ -116,9 +111,9 @@ public class QuestionBoardActivity extends AppCompatActivity {
                 postTime.setText(timeFormat.format(model.getPostTime()));
 
                 //Calculate the number of replies
-                calculateNumberOfReplies(model);
-                postNumberOfReplies.setText(model.getNumberOfRepliesCount().toString());
-                Log.d(LOG_TAG, "number of replies " + model.getNumberOfRepliesCount());
+                //calculateNumberOfReplies(model);
+//                postNumberOfReplies.setText(model.getNumberOfRepliesCount().toString());
+//                Log.d(LOG_TAG, "number of replies " + model.getNumberOfRepliesCount());
 
                 //TODO: add in delete functionality or delete this method
                 if (!mUser.getName().toLowerCase().matches(extractString(postUser).toLowerCase())) {
@@ -129,7 +124,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
         postView.setAdapter(mFirebasePostAdapter);
     }
 
-    private void calculateNumberOfReplies(final Post post) {
+    /*private void calculateNumberOfReplies(final Post post) {
         //Format and get correct timezone for Australia
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ssa");
@@ -164,7 +159,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
 
     private void postQuestion(Post post) {

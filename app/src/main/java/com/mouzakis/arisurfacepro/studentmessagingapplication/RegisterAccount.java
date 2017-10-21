@@ -138,7 +138,7 @@ public class RegisterAccount extends AppCompatActivity {
         return userSuccessfullyAdded;
     }
 
-    //Check if email is in Use - TODO: finish the method
+    //Check if email is in Use
     private boolean isEmailInUse(final String mEmail) {
         isEmailUsed = false;
         mDatabase.child("users").child("ID").addValueEventListener(new ValueEventListener() {
@@ -168,7 +168,6 @@ public class RegisterAccount extends AppCompatActivity {
         return isEmailUsed;
     }
 
-    //TODO: Need to make this not allow for the same email address to be used (otherwise the user information is overwritten).
     //TODO: if you want this to send an email please add functionality
     private boolean addUserToDatabase(String name, String screenName, String email, int password, String tutorialCode) {
         loggedInUser = new User(name, screenName, email, password, tutorialCode);

@@ -7,22 +7,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
-public class PostingActivity extends AppCompatActivity {
-    private EditText postSubject;
-    private EditText postQuestion;
+public class ResourcePostingActivity extends AppCompatActivity {
+    private EditText resourceDescription;
+    private EditText resourceHyperlink;
     private FloatingActionButton fab;
     private User mUser;
     public static final String USER = "user";
-    public static final String SUBJECT = "subject";
-    public static final String QUESTION = "question";
+    public static final String DESCRIPTION = "description";
+    public static final String HYPERLINK = "hyperlink";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posting);
+        setContentView(R.layout.activity_resource_posting);
 
-        postSubject = (EditText) findViewById(R.id.resource_description);
-        postQuestion = (EditText) findViewById(R.id.hyperlink_text);
+        resourceDescription = (EditText) findViewById(R.id.resource_description);
+        resourceHyperlink = (EditText) findViewById(R.id.hyperlink_text);
         fab = (FloatingActionButton) findViewById(R.id.post_resource_button);
         mUser = Utils.getLoggedInUser();
 
@@ -35,9 +35,9 @@ public class PostingActivity extends AppCompatActivity {
                     Intent intent = new Intent();
 
                     //Add the data to the intent to be sent back to main activity
-                    intent.putExtra(USER, mUser.getName());
-                    intent.putExtra(SUBJECT, extractString(postSubject));
-                    intent.putExtra(QUESTION, extractString(postQuestion));
+                    intent.putExtra(USER, Utils.getLoggedInUser().getName());
+                    intent.putExtra(DESCRIPTION, extractString(resourceDescription));
+                    intent.putExtra(HYPERLINK, extractString(resourceHyperlink));
 
                     setResult(RESULT_OK, intent);
                     finish();
@@ -48,15 +48,15 @@ public class PostingActivity extends AppCompatActivity {
 
     //Checks if the posting fields are null. If they are prompts will tell the user to finish the fields
     private boolean checkRequiredFields() {
-        if (extractString(postSubject).trim().isEmpty()) {
-            postSubject.setError(getString(R.string.required_field));
-            postSubject.requestFocus();
+        if (extractString(resourceDescription).trim().isEmpty()) {
+            resourceDescription.setError(getString(R.string.required_field));
+            resourceDescription.requestFocus();
             return false;
         }
 
-        if (extractString(postQuestion).trim().isEmpty()) {
-            postQuestion.setError(getString(R.string.required_field));
-            postQuestion.requestFocus();
+        if (extractString(resourceHyperlink).trim().isEmpty()) {
+            resourceHyperlink.setError(getString(R.string.required_field));
+            resourceHyperlink.requestFocus();
             return false;
         }
 

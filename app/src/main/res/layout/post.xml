@@ -31,7 +31,7 @@
 
 
     <TextView
-        android:id="@+id/post_heading"
+        android:id="@+id/resource_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Margin vs Padding!"
@@ -41,22 +41,22 @@
         android:layout_marginBottom="6dp"/>
 
     <TextView
-        android:id="@+id/post_date"
+        android:id="@+id/resource_post_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="1/1/2000"
         android:textStyle="italic"
-        android:layout_below="@+id/post_heading"/>
+        android:layout_below="@+id/resource_description"/>
 
     <TextView
-        android:id="@+id/post_time"
+        android:id="@+id/resource_post_time"
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="9:00am"
         android:textStyle="italic"
-        android:layout_toRightOf="@+id/post_date"
-        android:layout_below="@+id/post_heading"/>
+        android:layout_toRightOf="@+id/resource_post_date"
+        android:layout_below="@+id/resource_description"/>
 
     <Button
         android:id="@+id/delete_post_button"
@@ -65,7 +65,7 @@
         android:text="@string/delete_post"
         android:textStyle="italic"
         android:textSize="10sp"
-        android:layout_alignBaseline="@+id/post_time"
+        android:layout_alignBaseline="@+id/resource_post_time"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:visibility="gone"/>

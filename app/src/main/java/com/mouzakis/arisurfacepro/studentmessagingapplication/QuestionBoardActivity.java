@@ -92,9 +92,9 @@ public class QuestionBoardActivity extends AppCompatActivity {
             protected void populateView(View v, Post model, int position) {
                 postUser = v.findViewById(R.id.postee_name);
 //                postNumberOfReplies = v.findViewById(R.id.number_of_replies);
-                postSubject = v.findViewById(R.id.post_heading);
-                postDate = v.findViewById(R.id.post_date);
-                postTime = v.findViewById(R.id.post_time);
+                postSubject = v.findViewById(R.id.resource_description);
+                postDate = v.findViewById(R.id.resource_post_date);
+                postTime = v.findViewById(R.id.resource_post_time);
                 deletePostButton = v.findViewById(R.id.delete_post_button);
 
                 //Fill the fields with values and display on the screen

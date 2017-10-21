@@ -82,9 +82,9 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
 
     private void displayQuestion() {
         postUser = (TextView) findViewById(R.id.postee_name);
-        postSubject = (TextView) findViewById(R.id.post_heading);
-        postDate = (TextView) findViewById(R.id.post_date);
-        postTime = (TextView) findViewById(R.id.post_time);
+        postSubject = (TextView) findViewById(R.id.resource_description);
+        postDate = (TextView) findViewById(R.id.resource_post_date);
+        postTime = (TextView) findViewById(R.id.resource_post_time);
         questionText = (TextView) findViewById(R.id.question_text);
 
         //Show text in the application by filling the views

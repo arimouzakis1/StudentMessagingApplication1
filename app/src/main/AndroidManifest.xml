@@ -76,6 +76,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SeeRepliesToPostActivity"/>
         </activity>
+        <activity
+            android:name=".ResourcePostingActivity"
+            android:parentActivityName=".ResourceHubActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ResourceHubActivity"/>
+        </activity>
     </application>
 
 </manifest>

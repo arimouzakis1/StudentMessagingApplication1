@@ -13,7 +13,7 @@ public class HubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hub);
 
-        Button questionPostButton = (Button) findViewById(R.id.post_question_button);
+        Button questionPostButton = (Button) findViewById(R.id.post_resource_button);
         Button chatRoomButton = (Button) findViewById(R.id.chat_room_button);
         Button studentResourceButton = (Button) findViewById(R.id.student_resources_button);
 

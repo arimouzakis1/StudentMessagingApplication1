@@ -3,12 +3,16 @@ package com.mouzakis.arisurfacepro.studentmessagingapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +29,8 @@ public class RegisterAccount extends AppCompatActivity {
     public EditText mTutorialCodeField;
     public static User loggedInUser = null;
     public DatabaseReference mDatabase;
+    private String LOG_TAG = "RegisterAccount: ";
+    private boolean isEmailUsed;
 
 
     @Override
@@ -111,9 +117,9 @@ public class RegisterAccount extends AppCompatActivity {
         }
 
         //Test if email is already being used
-        boolean isEmailInUse = isEmailInUse();
+        boolean isEmailInUse = isEmailInUse(extractString(mEmailField).toLowerCase());
 
-        if (isEmailInUse) {
+        if (!isEmailInUse) {
             mEmailField.setError("Email already in use - please choose a unique email");
             mEmailField.requestFocus();
             return false;
@@ -133,9 +139,33 @@ public class RegisterAccount extends AppCompatActivity {
     }
 
     //Check if email is in Use - TODO: finish the method
-    private boolean isEmailInUse() {
+    private boolean isEmailInUse(final String mEmail) {
+        isEmailUsed = false;
+        mDatabase.child("users").child("ID").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(LOG_TAG, "Current mEmail field value " + mEmail);
 
-        return false;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String email = snapshot.child("email").getValue().toString();
+
+
+                    if (mEmail.trim().toLowerCase().matches(email)) {
+                        isEmailUsed = true;
+                        Log.d(LOG_TAG, "Email Address Found! " + email);
+                        break;
+                    } else {
+                        Log.d(LOG_TAG, "Email Address NOT found. " + email);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return isEmailUsed;
     }
 
     //TODO: Need to make this not allow for the same email address to be used (otherwise the user information is overwritten).

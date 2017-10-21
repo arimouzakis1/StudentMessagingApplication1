@@ -362,7 +362,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         String email = snapshot.child("email").getValue().toString();
 
 
-                        if (mEmail.trim().matches(email)) {
+                        if (mEmail.trim().toLowerCase().matches(email)) {
                             correctRecordSnapshot = snapshot;
                             Log.d(LOG_TAG, "Email Address Found! " + email);
                             break;

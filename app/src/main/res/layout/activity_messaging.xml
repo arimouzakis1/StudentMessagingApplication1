@@ -6,7 +6,7 @@
                 android:orientation="vertical">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floating_action_button"
+        android:id="@+id/send_message_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -16,7 +16,9 @@
         app:fabSize="mini"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginRight="8dp"
+        android:backgroundTint="#FFFFFF"
+        app:borderWidth="0dp"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -24,14 +26,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/floating_action_button">
+        android:layout_toLeftOf="@+id/send_message_button">
 
         <EditText
             android:id="@+id/message_to_be_sent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/floating_action_button"
-            android:layout_toStartOf="@id/floating_action_button"
+            android:layout_toLeftOf="@id/send_message_button"
+            android:layout_toStartOf="@id/send_message_button"
             android:hint="Input"
             android:layout_marginBottom="8dp"/>
     </android.support.design.widget.TextInputLayout>
@@ -40,7 +42,7 @@
         android:id="@+id/list_of_messages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/floating_action_button"
+        android:layout_above="@id/send_message_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"

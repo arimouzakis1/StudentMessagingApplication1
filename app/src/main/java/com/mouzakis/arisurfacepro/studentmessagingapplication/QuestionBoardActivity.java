@@ -43,6 +43,7 @@ public class QuestionBoardActivity extends AppCompatActivity {
         setContentView(R.layout.question_board);
 
         fab = (FloatingActionButton) findViewById(R.id.create_new_posting);
+        fab.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));
         mUser = Utils.getLoggedInUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("post").child(mUser.getTutorialCode());
 

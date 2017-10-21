@@ -25,6 +25,7 @@ public class CreatePostReply extends AppCompatActivity {
         question = (TextView) findViewById(R.id.question_text);
         replyField = (EditText) findViewById(R.id.reply_field);
         fab = (FloatingActionButton) findViewById(R.id.post_reply_button);
+        fab.setImageDrawable(getResources().getDrawable(R.drawable.reply_icon));
 
         question.setText(QuestionBoardActivity.post.getPostQuestion());
 

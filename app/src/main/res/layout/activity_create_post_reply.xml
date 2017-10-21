@@ -45,6 +45,8 @@
         android:layout_alignParentEnd="true"
         app:fabSize="normal"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#FFFFFF"
+        app:borderWidth="0dp"/>
 
 </RelativeLayout>

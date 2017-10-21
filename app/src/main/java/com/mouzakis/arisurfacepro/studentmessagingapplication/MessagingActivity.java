@@ -33,7 +33,8 @@ public class MessagingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_messaging);
 
 
-        fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
+        fab = (FloatingActionButton) findViewById(R.id.send_message_button);
+        fab.setImageDrawable(getResources().getDrawable(R.drawable.send_message_icon));
         messageField = (EditText) findViewById(R.id.message_to_be_sent);
         messageView = (ListView) findViewById(R.id.list_of_messages);
         mUser = Utils.getLoggedInUser();
@@ -45,11 +46,13 @@ public class MessagingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Message message = new Message(mUser.getScreenName(), messageField.getText().toString());
-                FirebaseDatabase.getInstance().getReference().child("message").child(mUser.getTutorialCode()).push().setValue(message);
+                if (!messageField.getText().toString().trim().isEmpty()) {
+                    Message message = new Message(mUser.getScreenName(), messageField.getText().toString());
+                    FirebaseDatabase.getInstance().getReference().child("message").child(mUser.getTutorialCode()).push().setValue(message);
 
-                messageField.setText("");
-                messageView.setSelection((messageView.getAdapter().getCount()) + 1);
+                    messageField.setText("");
+                    messageView.setSelection((messageView.getAdapter().getCount()) + 1);
+                }
             }
         });
 

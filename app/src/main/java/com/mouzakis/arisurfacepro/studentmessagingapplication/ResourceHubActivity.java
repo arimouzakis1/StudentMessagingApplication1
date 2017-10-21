@@ -37,6 +37,7 @@ public class ResourceHubActivity extends AppCompatActivity {
         setContentView(R.layout.activity_resource_hub);
 
         fab = (FloatingActionButton) findViewById(R.id.create_new_resource);
+        fab.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));
         mUser = Utils.getLoggedInUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("resource").child(mUser.getTutorialCode());
 

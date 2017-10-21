@@ -51,7 +51,8 @@
         android:textSize="10sp"
         android:layout_below="@+id/resource_description"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/question_heading"

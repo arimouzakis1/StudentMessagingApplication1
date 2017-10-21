@@ -168,7 +168,6 @@ public class RegisterAccount extends AppCompatActivity {
         return isEmailUsed;
     }
 
-    //TODO: if you want this to send an email please add functionality
     private boolean addUserToDatabase(String name, String screenName, String email, int password, String tutorialCode) {
         loggedInUser = new User(name, screenName, email, password, tutorialCode);
         DatabaseReference userReference = mDatabase.child("users").child("ID");
@@ -184,12 +183,10 @@ public class RegisterAccount extends AppCompatActivity {
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         return email.toLowerCase().contains("@ad.unsw.edu.au");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() >= 8;
     }
 

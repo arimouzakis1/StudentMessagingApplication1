@@ -35,17 +35,42 @@
             android:name=".MessagingActivity"
             android:windowSoftInputMode="stateHidden">
         </activity>
-        <activity android:name=".QuestionBoardActivity">
+        <activity
+            android:name=".QuestionBoardActivity"
+            android:parentActivityName=".HubActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HubActivity"/>
         </activity>
         <activity android:name=".HubActivity">
         </activity>
-        <activity android:name=".ResourceHubActivity">
+        <activity
+            android:name=".ResourceHubActivity"
+            android:parentActivityName=".HubActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HubActivity"/>
         </activity>
-        <activity android:name=".PostingActivity">
+        <activity
+            android:name=".PostingActivity"
+            android:parentActivityName=".QuestionBoardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".QuestionBoardActivity"/>
         </activity>
-        <activity android:name=".SeeRepliesToPostActivity">
+        <activity
+            android:name=".SeeRepliesToPostActivity"
+            android:parentActivityName=".QuestionBoardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".QuestionBoardActivity"/>
         </activity>
-        <activity android:name=".CreatePostReply">
+        <activity
+            android:name=".CreatePostReply"
+            android:parentActivityName=".SeeRepliesToPostActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SeeRepliesToPostActivity"/>
         </activity>
     </application>
 

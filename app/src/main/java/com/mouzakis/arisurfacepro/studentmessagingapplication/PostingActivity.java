@@ -24,6 +24,7 @@ public class PostingActivity extends AppCompatActivity {
         postSubject = (EditText) findViewById(R.id.resource_description);
         postQuestion = (EditText) findViewById(R.id.hyperlink_text);
         fab = (FloatingActionButton) findViewById(R.id.post_resource_button);
+        fab.setImageDrawable(getResources().getDrawable(R.drawable.post_icon));
         mUser = Utils.getLoggedInUser();
 
         fab.setOnClickListener(new View.OnClickListener() {

@@ -45,6 +45,8 @@
         android:layout_below="@+id/hyperlink"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        app:fabSize="normal"/>
+        app:fabSize="normal"
+        android:backgroundTint="#FFFFFF"
+        app:borderWidth="0dp"/>
 
 </RelativeLayout>

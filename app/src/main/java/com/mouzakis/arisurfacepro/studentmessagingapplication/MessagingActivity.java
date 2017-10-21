@@ -42,6 +42,7 @@ public class MessagingActivity extends AppCompatActivity {
 
 
         displayChatMessages();
+        messageView.setSelection(messageView.getAdapter().getCount());
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

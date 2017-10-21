@@ -60,11 +60,16 @@ public class ResourcePostingActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!extractString(resourceHyperlink).trim().toLowerCase().contains("www.")) {
+        boolean containsInternetPrefix = false;
+        if (extractString(resourceHyperlink).trim().toLowerCase().startsWith("http://") || extractString(resourceHyperlink).trim().toLowerCase().startsWith("https://")) {
+            containsInternetPrefix = true;
+        }
+        if (!containsInternetPrefix) {
             resourceHyperlink.setError(getString(R.string.resource_invalid_error));
             resourceHyperlink.requestFocus();
             return false;
         }
+
 
         return true;
     }

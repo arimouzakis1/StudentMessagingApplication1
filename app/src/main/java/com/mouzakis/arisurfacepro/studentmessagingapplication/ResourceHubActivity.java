@@ -1,10 +1,12 @@
 package com.mouzakis.arisurfacepro.studentmessagingapplication;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -42,11 +44,22 @@ public class ResourceHubActivity extends AppCompatActivity {
 
         displayPosts();
 
+        //On Floating Action Button Click allow the user to post a new Resource by taking them to the ResourcePostingActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ResourcePostingActivity.class);
                 startActivityForResult(intent, CREATE_NEW_RESOURCE);
+            }
+        });
+
+        //On click of the resource open the links webpage
+        resourceView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Uri uri = Uri.parse(mFirebaseResourceAdapter.getItem(i).getResourceLink());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 

@@ -10,9 +10,9 @@
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="100dp"
         android:fontFamily="sans-serif"
-        android:textSize="32sp"
+        android:textSize="28sp"
         android:id="@+id/question_board_heading"
         android:text="@string/question_board_heading"
         android:background="@drawable/question_board_heading_image"/>

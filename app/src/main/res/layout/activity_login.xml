@@ -30,6 +30,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="125dp"
+                android:src="@drawable/student_banter_logo"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

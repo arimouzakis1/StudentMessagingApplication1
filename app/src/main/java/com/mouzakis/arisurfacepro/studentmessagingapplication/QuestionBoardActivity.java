@@ -136,10 +136,9 @@ private ImageButton chatRoomButton;
 //                postNumberOfReplies.setText(model.getNumberOfRepliesCount().toString());
 //                Log.d(LOG_TAG, "number of replies " + model.getNumberOfRepliesCount());
 
-                //TODO: add in delete functionality or delete this method
-                if (!mUser.getName().toLowerCase().matches(extractString(postUser).toLowerCase())) {
+                /*if (!mUser.getName().toLowerCase().matches(extractString(postUser).toLowerCase())) {
                     deletePostButton.setVisibility(View.GONE);
-                }
+                }*/
             }
         };
         postView.setAdapter(mFirebasePostAdapter);

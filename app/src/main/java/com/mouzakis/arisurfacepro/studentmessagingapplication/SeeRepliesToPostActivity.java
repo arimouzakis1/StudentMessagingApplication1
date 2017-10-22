@@ -53,10 +53,10 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("reply")
                 .child(mUser.getTutorialCode());
 
-        //TODO: add in delete functionality or delete this method
-        if (mUser.getName().toLowerCase().matches(QuestionBoardActivity.post.getPosteeName().toLowerCase())) {
+
+        /*if (mUser.getName().toLowerCase().matches(QuestionBoardActivity.post.getPosteeName().toLowerCase())) {
             deletePostButton.setVisibility(View.GONE);
-        }
+        }*/
 
         displayQuestion();
         displayReplies();

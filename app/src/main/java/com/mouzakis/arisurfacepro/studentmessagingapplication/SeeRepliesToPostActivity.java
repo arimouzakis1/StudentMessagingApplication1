@@ -37,7 +37,6 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
     private ImageButton resourceButton;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

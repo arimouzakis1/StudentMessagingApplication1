@@ -1,5 +1,8 @@
 package com.mouzakis.arisurfacepro.studentmessagingapplication;
 
+import android.content.Context;
+import android.content.Intent;
+
 /**
  * Created by AriSurfacePro on 20/10/2017.
  */
@@ -17,5 +20,19 @@ public class Utils {
         } else {
             return loggedInUser;
         }
+    }
+
+    public static void signOut(Context context) {
+        RegisterAccount.loggedInUser = null;
+        LoginActivity.loggedInUser = null;
+        LoginActivity.loggedInSuccessfully = false;
+
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void manageProfile(Context context) {
+//        Intent intent = new Intent(context, ManageProfile.class);
+//        context.startActivity(intent);
     }
 }

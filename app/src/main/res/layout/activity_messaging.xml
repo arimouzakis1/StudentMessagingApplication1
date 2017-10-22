@@ -5,6 +5,13 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/app_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        ></android.support.v7.widget.Toolbar>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/send_message_button"
         android:layout_width="wrap_content"

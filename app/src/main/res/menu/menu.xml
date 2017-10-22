@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/manage_profile"
+        android:icon="@drawable/manage_profile_icon"
+        android:title="Manage Profile"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/sign_out"
+        android:icon="@drawable/sign_out_icon"
+        android:title="Sign Out"
+        app:showAsAction="always"/>
+
+</menu>

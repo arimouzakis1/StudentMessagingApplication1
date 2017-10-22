@@ -3,10 +3,6 @@ package com.mouzakis.arisurfacepro.studentmessagingapplication;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,45 +26,11 @@ public class MessagingActivity extends AppCompatActivity {
     private TextView messageDate;
     private DatabaseReference mDatabase;
     private User mUser;
-    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            MenuInflater inflater = mode.getMenuInflater();
-            inflater.inflate(R.menu.menu, menu);
-            return true;
-        }
 
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return false;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.sign_out:
-                    Utils.signOut(getApplicationContext());
-                    return true;
-                case R.id.manage_profile:
-                    Utils.manageProfile(getApplicationContext());
-                    return true;
-                default:
-                    return false;
-
-            }
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            mode = null;
-        }
-    };
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messaging);
-        startSupportActionMode(mActionModeCallback).setTitle("Student Banter");
 
 
         fab = (FloatingActionButton) findViewById(R.id.send_message_button);
@@ -80,7 +42,7 @@ public class MessagingActivity extends AppCompatActivity {
 
 
         displayChatMessages();
-        messageView.setSelection(messageView.getAdapter().getCount());
+        messageView.setSelection(mFirebaseMessageAdapter.getCount() + 1);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

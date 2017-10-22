@@ -15,15 +15,17 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/create_new_posting"
         android:layout_width="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:clickable="true"
         app:fabSize="mini"
         android:backgroundTint="#FFFFFF"
-        app:borderWidth="0dp"/>
+        app:borderWidth="0dp"
+        android:layout_above="@+id/question_chat_room_image_button"/>
 
 
     <ListView
@@ -36,5 +38,37 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/create_new_posting"/>
+
+    <ImageButton
+        android:id="@+id/question_chat_room_image_button"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/chat"
+        android:scaleType="fitCenter"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"/>
+
+    <ImageButton
+        android:id="@+id/question_question_board_image_button"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/questionboard"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/question_chat_room_image_button"
+        android:layout_toRightOf="@+id/question_chat_room_image_button"/>
+
+    <ImageButton
+        android:id="@+id/question_student_resources_image_button"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/studentresources"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/question_question_board_image_button"
+        android:layout_toRightOf="@+id/question_question_board_image_button"/>
 
 </RelativeLayout>

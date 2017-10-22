@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +37,8 @@ public class QuestionBoardActivity extends AppCompatActivity {
     public static long postId;
     private User mUser;
 //    private long replyCount;
+private ImageButton chatRoomButton;
+    private ImageButton resourceButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,11 @@ public class QuestionBoardActivity extends AppCompatActivity {
 
         fab = (FloatingActionButton) findViewById(R.id.create_new_posting);
         fab.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));
+        mUser = Utils.getLoggedInUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("post").child(mUser.getTutorialCode());
         postView = (ListView) findViewById(R.id.list_of_posts);
+        chatRoomButton = (ImageButton) findViewById(R.id.question_chat_room_image_button);
+        resourceButton = (ImageButton) findViewById(R.id.question_student_resources_image_button);
 
         displayPosts();
 
@@ -64,6 +70,22 @@ public class QuestionBoardActivity extends AppCompatActivity {
                 postId = postView.getAdapter().getItemId(i);
                 Intent intent = new Intent(getApplicationContext(), SeeRepliesToPostActivity.class);
                 startActivityForResult(intent, REPLIES);
+            }
+        });
+
+        chatRoomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        resourceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ResourceHubActivity.class);
+                startActivity(intent);
             }
         });
 

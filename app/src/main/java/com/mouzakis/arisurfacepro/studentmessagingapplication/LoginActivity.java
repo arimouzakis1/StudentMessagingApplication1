@@ -376,7 +376,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (loggedInSuccessfully) {
-                Intent intent = new Intent(getApplicationContext(), HubActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
                 startActivity(intent);
             } else {
                 mEmailView.setError(getString(R.string.invalid_login));

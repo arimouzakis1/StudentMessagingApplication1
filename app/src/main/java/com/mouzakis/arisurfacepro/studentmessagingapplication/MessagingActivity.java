@@ -1,10 +1,12 @@
 package com.mouzakis.arisurfacepro.studentmessagingapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,6 +28,8 @@ public class MessagingActivity extends AppCompatActivity {
     private TextView messageDate;
     private DatabaseReference mDatabase;
     private User mUser;
+    private ImageButton questionBoardButton;
+    private ImageButton resourceButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class MessagingActivity extends AppCompatActivity {
         fab.setImageDrawable(getResources().getDrawable(R.drawable.send_message_icon));
         messageField = (EditText) findViewById(R.id.message_to_be_sent);
         messageView = (ListView) findViewById(R.id.list_of_messages);
+        questionBoardButton = (ImageButton) findViewById(R.id.message_question_board_image_button);
+        resourceButton = (ImageButton) findViewById(R.id.message_student_resources_image_button);
         mUser = Utils.getLoggedInUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("message").child(mUser.getTutorialCode());
 
@@ -54,6 +60,22 @@ public class MessagingActivity extends AppCompatActivity {
                     messageField.setText("");
                     messageView.setSelection((messageView.getAdapter().getCount()) + 1);
                 }
+            }
+        });
+
+        questionBoardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuestionBoardActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        resourceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ResourceHubActivity.class);
+                startActivity(intent);
             }
         });
 

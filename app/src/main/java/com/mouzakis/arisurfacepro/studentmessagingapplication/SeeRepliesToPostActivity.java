@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +33,9 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
     private TextView replyDate;
     private TextView replyText;
     private User mUser;
+    private ImageButton chatRoomButton;
+    private ImageButton resourceButton;
+
 
 
     @Override
@@ -43,6 +47,8 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
         deletePostButton = (Button) findViewById(R.id.delete_post_button);
         replyView = (ListView) findViewById(R.id.post_replies_view);
         mUser = Utils.getLoggedInUser();
+        chatRoomButton = (ImageButton) findViewById(R.id.replies_chat_room_image_button);
+        resourceButton = (ImageButton) findViewById(R.id.replies_student_resources_image_button);
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("reply")
                 .child(mUser.getTutorialCode());
@@ -60,6 +66,22 @@ public class SeeRepliesToPostActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CreatePostReply.class);
                 startActivityForResult(intent, CREATE_POST_REPLY);
+            }
+        });
+
+        chatRoomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        resourceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ResourceHubActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -54,7 +54,7 @@ public class RegisterAccount extends AppCompatActivity {
                 boolean newUserSuccessfullyCreated = createNewUser();
 
                 if (newUserSuccessfullyCreated) {
-                    Intent intent = new Intent(getApplicationContext(), HubActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
                     startActivity(intent);
                 }
             }

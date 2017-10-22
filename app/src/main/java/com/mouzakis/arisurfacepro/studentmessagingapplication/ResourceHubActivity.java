@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,6 +31,8 @@ public class ResourceHubActivity extends AppCompatActivity {
     private TextView resourceHyperlink;
     private ListView resourceView;
     private User mUser;
+    private ImageButton chatRoomButton;
+    private ImageButton questionBoardButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class ResourceHubActivity extends AppCompatActivity {
         fab.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));
         mUser = Utils.getLoggedInUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("resource").child(mUser.getTutorialCode());
+        chatRoomButton = (ImageButton) findViewById(R.id.resource_chat_room_image_button);
+        questionBoardButton = (ImageButton) findViewById(R.id.resource_question_board_image_button);
 
         resourceView = (ListView) findViewById(R.id.list_of_resources);
 
@@ -60,6 +65,22 @@ public class ResourceHubActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Uri uri = Uri.parse(mFirebaseResourceAdapter.getItem(i).getResourceLink());
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        chatRoomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MessagingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        questionBoardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuestionBoardActivity.class);
                 startActivity(intent);
             }
         });
